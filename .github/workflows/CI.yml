@@ -15,5 +15,6 @@ jobs:
           xcodebuild build-for-testing -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj" -allowProvisioningUpdates
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj" -allowProvisioningUpdates
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.AUTH_KEY }}" --output .github/secrets/AuthKey.p8 .github/secrets/AuthKey.p8.gpg
+          xcodebuild build-for-testing -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj" -allowProvisioningUpdates -authenticationKeyIssuerID "69a6de80-1654-47e3-e053-5b8c7c11a4d1" -authenticationKeyID "8AZFX5M94M" -authenticationKeyPath ".github/secrets/AuthKey.p8"
 
