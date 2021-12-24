@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  build-and-test:
     name: Build and Test
     runs-on: macos-latest
 
@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: |
-          xcodebuild build-for-testing -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj"
+          xcodebuild build-for-testing -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj" -allowProvisioningUpdates
       - name: Test
         run: |
-          xcodebuild test-without-building -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj"
+          xcodebuild test-without-building -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj" -allowProvisioningUpdates
 
