@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: macos-latest
+
+	steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          xcodebuild build-for-testing -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj"
+      - name: Test
+        run: |
+          xcodebuild test-without-building -scheme "FrameworkTests" -project "Framework/Framework.xcodeproj"
+
