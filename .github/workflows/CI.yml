@@ -3,11 +3,11 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  build-and-test:
     name: Build and Test
     runs-on: macos-latest
 
-	steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
